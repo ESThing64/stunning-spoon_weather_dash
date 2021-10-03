@@ -11,63 +11,80 @@
 <body>
     <h1 class="weather-h">Weather Dashboard</h1>
 
-    <main>
+    <main class="container row">
 
 
         <form>
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Which City are you Traveling to?</label>
+            <div class="mb-3 col-6">
+              <label for="exampleInputEmail1" class="form-label col-6">Which City are you Traveling to?</label>
               <input type="text" class="form-control" id="city-form">
               </div>
             </div>
            <button type="submit" id="city-btn" class="btn btn-primary">Submit</button>
-            <div>
-                <button>history1</button>
-            </div>
-            <div>
-                <button>history1</button>
-            </div>
-            <div>
-                <button>history1</button>
-            </div>
-            <div>
-                <button>history1</button>
-            </div>
-            <div>
-                <button>history1</button>
-            </div>
-            <div>
-                <button>history1</button>
-            </div>
-            <div>
-                <button>history1</button>
-            </div>
-            <div>
-                <button>history1</button>
-            </div>
-          </form>
+            
+            
 
-          <div class="flex">
+          <div class=" col-6">
 
             <section class="city">
-                <h1 id="city-today" class="flex">Da Nang</h1>
+                <h1 id="city-today" class="col-6"></h1>
                 <p id="temp-t">Temp: </p>
                 <p id="wind-t">Wind: </p>
                 <p id="hum-t">Humidity: </p>
                 <p id="uv-t">UV Index: </p>
-                <p>Air Quality: </p>
+               
             </section>
+            </div>
 
             <section class="day">
-            <div class="week-card">Monday</div>
-            <div class="week-card">Tuesday</div>
-            <div class="week-card">Wednesday</div>
-            <div class="week-card">Thursday</div>
-            <div class="week-card">Friday</div>
+            <div id="day1-card" class="col-md-2">Monday
+                <h3 id ="day1"></h3>
+                <p id="temp1"></p>
+                <p id="hum1"></p>
+                <img id="icon1" src="" alt="Icon for weather">
+            </div>
+
+
+            <div id="day2-card" class="col-md-2">Tuesday
+
+                <h3 id="day2" ></h3>
+                <p id="temp2"></p>
+                <p id="hum2"></p>
+                <img id="icon2" src="" alt="Icon for weather">
+            </div>
+
+
+            <div id="day3-card" class="col-md-2">Wednesday
+
+                <h3 id="day3" ></h3>
+                <p id="temp3"></p>
+                <p id="hum3"></p>
+                <img id="icon3" src="" alt="Icon for weather">
+            </div>
+
+
+            <div id="day4-card" class="col-md-2">Thursday
+
+                <h3 id="day4" ></h3>
+                <p id="temp4"></p>
+                <p id="hum4"></p>
+                <img id="icon4" src="" alt="Icon for weather">
+            </div>
+
+
+            <div id="day5-card" class="col-md-2">Friday
+
+                <h3 id="day5" ></h3>
+                <p id="temp5"></p>
+                <p id="hum5"></p>
+                <img id="icon5" src="" alt="Icon for weather">
+            </div>
+
+
             </section>
 
 
-          </div>
+          
 
 
 
