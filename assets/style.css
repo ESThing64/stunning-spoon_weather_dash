@@ -1,0 +1,23 @@
+h1{
+    text-align: center;
+}
+
+main{
+    height: 100vh;
+}
+
+.city{
+    border: solid black;
+    height: 50vh;
+}
+.day{
+    border: solid black;
+    height: 50vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.week-card{
+    width: 25vw;
+    border: black solid 3px;
+}
