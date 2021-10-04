@@ -5,10 +5,16 @@ let tempTEl = $('#temp-t');
 let windTEl = $('#wind-t'); 
 let humTEl = $('#hum-t'); 
 let uvTEl = $('#uv-t'); 
-// This is how to get data fomr the weather api but does this allow me to get 5 day??
+// const time = luxon.dt.toLocaleString(DateTime.DATETIME_MED);
+const timeNow = luxon.DateTime.now()
+
+console.log()
+
+	//=>	"10/4/2021"
+
+
+// This is how to lat and lon
 //api.openweathermap.org/data/2.5/weather?q={city name}&appid=569b83e02c16eca2296eee261eebaa02
-
-
 //add imperial-- &units=imperial
 //https://api.openweathermap.org/data/2.5/weather?q=function(n){var%20r,e,i,t=this[0];return%20arguments.length?(i=m(n),this.each(function(e){var%20t;1===this.nodeType&&(null==(t=i?n.call(this,e,S(this).val()):n)?t=%22%22:%22number%22==typeof%20t?t+=%22%22:Array.isArray(t)&&(t=S.map(t,function(e){return%20null==e?%22%22:e+%22%22})),(r=S.valHooks[this.type]||S.valHooks[this.nodeName.toLowerCase()])&&%22set%22in%20r&&void%200!==r.set(this,t,%22value%22)||(this.value=t))})):t?(r=S.valHooks[t.type]||S.valHooks[t.nodeName.toLowerCase()])&&%22get%22in%20r&&void%200!==(e=r.get(t,%22value%22))?e:%22string%22==typeof(e=t.value)?e.replace(xt,%22%22):null==e?%22%22:e:void%200}&appid=569b83e02c16eca2296eee261eebaa02
 
@@ -26,7 +32,7 @@ cityBtn.on("click", function(event){
     
     let lat = response.coord.lat
     let lon = response.coord.lon
-    let cityName = response.name
+    let cityName = response.name + "(" + timeNow.toLocaleString() + ")"
 
     cityTodayEl.text(cityName)
     
@@ -75,7 +81,7 @@ cityBtn.on("click", function(event){
     uvTEl.text("UV Index: " + uv);
     console.log(lat, lon);
 
-  
+    // timeNow.plus({ days: i}).toLocaleString()
 
     for ( i = 1; i < 6; i++) {
       
@@ -83,7 +89,8 @@ cityBtn.on("click", function(event){
     $("#temp" + i).text("Temp:" + response.daily[i].temp.max + "°F");
     $("#hum" + i).text("Humidity:" + response.daily[i].humidity + "%");
     $("#wind" + i).text('Wind: "' + response.daily[i].wind_speed + " MPH")
-    $('#icon' +i).attr("src", icon1)
+    $('#icon' + i).attr("src", icon1)
+    $('#day' + i).text(timeNow.plus({ days: i}).toLocaleString())
 
 
     }
