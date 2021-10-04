@@ -1,10 +1,3 @@
-
-// let city = "";
-// let weathApi = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=569b83e02c16eca2296eee261eebaa02"
-// let weatherApiUnits = "https://api.openweathermap.org/data/2.5/find?q=" + city + "&units=imperial&appid=569b83e02c16eca2296eee261eebaa02"
-                      
-// let lonLat = "";
-// var cityFormEl = $('#city-form')
 var cityFormEl =$("#city-form");
 let cityBtn = $('#city-btn');
 let cityTodayEl = $('#city-today'); 
@@ -24,17 +17,12 @@ cityBtn.on("click", function(event){
   event.preventDefault()
    var city = cityFormEl.val().trim()
    console.log(city)
-   // this one gets most of the data, is it only missing UV?
    let weathApi1 = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=569b83e02c16eca2296eee261eebaa02"
   $.ajax({
     url: weathApi1,
     method: 'GET',
   }).then(function (response) {
-    
-    
   
-    //this function needs to just get lat and lon and name
-    
     
     let lat = response.coord.lat
     let lon = response.coord.lon
@@ -52,45 +40,11 @@ cityBtn.on("click", function(event){
 })
 
 
-//what do i need to dO?
-// get the uv and 5 day forcast
-//get weather icon to display
-//https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
-// website says this will get the for cast for 7 days.
 
 
 
- //on call is the uv, but can one call get forcat too? it says it can. So I can use
- // the one call for 5day forcast and UV YES I CAN! UV AND 5day
- 
-// $.ajax({
-// url: "https://api.openweathermap.org/data/2.5/onecall?lat=29.7633&lon=-95.3633&units=imperial&appid=569b83e02c16eca2296eee261eebaa02",
-// method: 'GET',
-// }).then(function (response) {
-//   console.log("onecall", response)
-  
-
-//   // let cityName = response.name;
-//   //   let lat = response.coord.lat
-//   //   let lon = response.coord.lon
-//     let temp = response.current.temp;
-//     let wind = response.current.wind_speed;
-//     let humidity = response.current.humidity;
-//     let uv = response.current.uvi;
-
-//   //   cityTodayEl.text(cityName)
-//     tempTEl.text("Temp: " + temp)
-//     windTEl.text("Wind: " + wind)
-//     humTEl.text("Humidity: " + humidity)
-//     uvTEl.text("UV Index: " + uv)
-//   //   console.log(lat, lon)
 
 
-//  });
-
-
- // i need to run one api JUST to get the lat and lon THEN i can use the onecall 
- //to get everything else.
 
  function getWeather(lat,lon){
   let weathApi2 = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=569b83e02c16eca2296eee261eebaa02"
@@ -100,40 +54,47 @@ cityBtn.on("click", function(event){
   }).then(function (response) {
     console.log("getWeatherfunc", response);
     
-  
-    
-    
-    // let cityName = response.name;
-    // let lat = response.coord.lat
-    // let lon = response.coord.lon
+
     let temp = response.current.temp;
     let wind = response.current.wind_speed;
     let humidity = response.current.humidity;
     let uv = response.current.uvi;
+    let icont = "http://openweathermap.org/img/wn/" + response.daily[0].weather[0].icon + "@2x.png"
 
-    // cityTodayEl.text(cityName)
-    tempTEl.text("Temp: " + temp + "°F")
-    windTEl.text("Wind: " + wind + "mph")
-    humTEl.text("Humidity: " + humidity)
-    uvTEl.text("UV Index: " + uv)
-    console.log(lat, lon)
+    $('#icon-t').attr("src", icont)
 
-    //Days of the week are next
-    console.log("tomorrow temp", response.daily[1].temp.max)
-    console.log("tomorrow humidity", response.daily[1].humidity)
-    console.log("tomorrow UV", response.daily[1].uvi)
-    console.log("tomorrow wind", response.daily[1].wind_speed)
-    console.log("tuesday", response.daily[2])
-    console.log("wednesday", response.daily[3])
-    console.log("Thursday", response.daily[4])
-    console.log("friday", response.daily[5])
+    //icon example
+    // http://openweathermap.org/img/wn/10d@2x.png
+
    
 
+    // cityTodayEl.text(cityName)
+    tempTEl.text("Temp: " + temp + "°F");
+    windTEl.text("Wind: " + wind + " mph");
+    humTEl.text("Humidity: " + humidity + "%");
+    uvTEl.text("UV Index: " + uv);
+    console.log(lat, lon);
+
+  
+
+    for ( i = 1; i < 6; i++) {
+      
+      let icon1 = "http://openweathermap.org/img/wn/" + response.daily[i].weather[0].icon + "@2x.png"
+    $("#temp" + i).text("Temp:" + response.daily[i].temp.max + "°F");
+    $("#hum" + i).text("Humidity:" + response.daily[i].humidity + "%");
+    $("#wind" + i).text('Wind: "' + response.daily[i].wind_speed + " MPH")
+    $('#icon' +i).attr("src", icon1)
+
+
+    }
+
+    
+   
   });
   
  }
 
-//USE THIS USE THIS USE THIS INSIDE THE SECOND FUNCTION
+
 
   
   
