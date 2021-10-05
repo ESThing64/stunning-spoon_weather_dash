@@ -1,23 +1,60 @@
-h1{
+body {
+    color: #eee;
+    background: #121212;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+h1 {
     text-align: center;
 }
 
-main{
-    height: 100vh;
+main {
+    height: 80vh;
 }
 
-.city{
-    border: solid black;
-    height: 50vh;
+.city {
+    height: 40vh;
+    justify-content: center;
 }
-.day{
-    border: solid black;
-    height: 50vh;
+
+.day {
+    height: 30vh;
     display: flex;
     justify-content: space-between;
+    border-top: solid black 3px;
 }
 
-.week-card{
+.week-card {
     width: 25vw;
-    border: black solid 3px;
+}
+
+@import "functions";
+@import "variables";
+@import "mixins";
+.dark {
+    $enable-gradients: true;
+    /* redefine theme colors for dark theme */
+    $primary: #012345;
+    $secondary: #111111;
+    $success: #222222;
+    $dark: #000;
+    $theme-colors: ( "primary": $primary, "secondary": $secondary, "success": $success, "danger": $danger, "info": $indigo, "dark": $dark, "light": #aaa, );
+    /* redefine theme color variables */
+    @each $color,
+    $value in $theme-colors {
+        --#{$variable-prefix}#{$color}: #{$value};
+    }
+    $theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
+    @each $color,
+    $value in $theme-colors-rgb {
+        --#{$variable-prefix}#{$color}-rgb: #{$value};
+    }
+    $body-color: #eeeeee;
+    $body-bg: #263C5C;
+    --#{$variable-prefix}body-color: #{$body-color};
+    --#{$variable-prefix}body-bg: #{$body-bg};
+    @import "bootstrap";
 }
