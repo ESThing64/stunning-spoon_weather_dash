@@ -4,9 +4,9 @@ Want to check the weather for your travels? You can do it here. This app was mad
 
 ## What Technologies where used?
 
-Bootstrap
-Luxon
-jQuery
+* Bootstrap
+* Luxon
+* jQuery
 
 
 ## Deployed application 
